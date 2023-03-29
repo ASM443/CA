@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <title>CA Invasive Species Tracking</title>
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+        #map {
+            width: 1227px;
+            height: 883px;
+        }
+        </style>
+        <title></title>
+        
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <img src="Images/ca-logo-sm.png" width="175" height="57" alt="Columbia Association">
+        </div>
+
+        <div id="map" style='width: 400px; height: 300px;'>
+        <nav id="menu"></nav>
+        <div id="distance" class="distance-container"></div>
+        </div>
+        <button id ="recbtn" onclick="recordPos()">Record Position</button>
+        <button id ="stopbtn" class ="hide "onclick="stopRecording()">Stop Record</button>
+        <p id="demo"></p>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="data/highlight_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [-76.85977509292205,39.20050881141855],
+ zoom: 15,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+</script>
+<script src="script.js" ></script>
+    </body>
+</html>
