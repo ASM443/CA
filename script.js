@@ -77,7 +77,7 @@ function stopRecording() {
     document.getElementById("stopbtn").classList.toggle("hide");
     findMaxMin();
 }
-// hello
+// Print out the polygonal layer
 function findMaxMin(){
     let lats = [];
     let longs = [];
