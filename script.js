@@ -13,7 +13,7 @@ function highlightMap(pltCoords) {
         'type': 'Polygon',
         // These coordinates outline Maine.
         'coordinates': [
-            //mainecords
+        
             pltCoords
             //testcords
         ]
