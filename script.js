@@ -118,7 +118,7 @@ function findMaxMin(){
 
     //console.log("Highlighting ", maxLong, maxLat, Math.min(longs), Math.min(lats));
     map.flyTo({center: [maxLong , maxLat], zoom: 19});
-    highlightMap([[maxLong, maxLat], [Math.min(...longs), Math.min(...lats)], [maxLong, Math.min(...lats)], [Math.min(...longs), maxLat]]);
+    highlightMap([[maxLong, maxLat], [Math.min(...longs), Math.min(...lats)], [maxLong, Math.min(...lats)], [Math.min(...longs), maxLat],[maxLong, maxLat]]);
 }
 
 function updateCenter(pos) {
