@@ -118,7 +118,18 @@ function findMaxMin(){
 
     //console.log("Highlighting ", maxLong, maxLat, Math.min(longs), Math.min(lats));
     map.flyTo({center: [maxLong , maxLat], zoom: 19});
-    highlightMap([[maxLong, maxLat], [Math.min(...longs), Math.min(...lats)], [maxLong, Math.min(...lats)], [Math.min(...longs), maxLat],[maxLong, maxLat]]);
+    const topLeft = [Math.min(...longs), maxLat];
+    const topRight = [maxLong, maxLat];
+    const bottomRight = [maxLong, Math.min(...lats)];
+    const bottomLeft = [Math.min(...longs), Math.min(...lats)];
+
+    // Create a coordinates array with the four corner points and close the polygon by repeating the first point
+    const rectangleCoords = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
+
+    // Call highlightMap() with the rectangle coordinates
+    highlightMap(rectangleCoords);
+    
+    //highlightMap([[maxLong, maxLat], [Math.min(...longs), Math.min(...lats)], [maxLong, Math.min(...lats)], [Math.min(...longs), maxLat],[maxLong, maxLat]]);
 }
 
 function updateCenter(pos) {
