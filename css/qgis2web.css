@@ -18,6 +18,29 @@
             margin: 0 0 5px;
             color: #777;
         }
+        label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+               }
+
+        input[type="text"] {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                }
+
+        button[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+               }
+
          #menu {
             background: #fff;
             position: absolute;
