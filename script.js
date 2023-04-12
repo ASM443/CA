@@ -1,6 +1,8 @@
 let recordId;
 let coordsList = [];
 
+
+
 function highlightMap(pltCoords) {
     console.log("highlighting: ", pltCoords)
     document.getElementById("demo").innerHTML = pltCoords;
