@@ -54,3 +54,25 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 <script src="script.js" ></script>
     </body>
 </html>
+
+<form action="submit.php" method="post">
+  <label for="FirstName">First Name:</label>
+  <input type="text" id="FirstName" name="FirstName" required>
+  
+  <label for="LastName">Last Name:</label>
+  <input type="text" id="LastName" name="LastName" required>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="PlantType">Plant types involved:</label>
+  <textarea id="PlantType" name="PlantType"></textarea>
+  
+  <label for="percentage">Percentage of area covered:</label>
+  <input type="number" id="percentage" name="percentage" min="0" max="100" required>
+  
+  <label for="image">Image of infested area:</label>
+  <input type="file" id="image" name="image" accept="image/*" required>
+  
+  <button type="submit">Submit</button>
+</form>
