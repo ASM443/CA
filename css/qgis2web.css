@@ -43,7 +43,15 @@
                 bottom: 0;
                 margin-top: 10px;
                }
-
+        button[type="recordbtn"] {
+                background-color: #4CAF50;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+        }
          #menu {
             background: #fff;
             position: absolute;
