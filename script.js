@@ -1,56 +1,40 @@
+// Declare variables for recording and storing coordinates
 let recordId;
 let coordsList = [];
 
-
-
+// Function to highlight a polygon on the map with the given coordinates
 function highlightMap(pltCoords) {
     console.log("highlighting: ", pltCoords)
     document.getElementById("demo").innerHTML = pltCoords;
-        // Add a data source containing GeoJSON data.
-        map.addSource('MapUpdate', {
+
+    // Add a data source containing GeoJSON data.
+    map.addSource('MapUpdate', {
         'type': 'geojson',
         'data': {
-        'type': 'Feature',
-        'geometry': {
-        'type': 'Polygon',
-        // These coordinates outline Maine.
-        'coordinates': [
-        
-            pltCoords
-            //testcords
-        ]
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Polygon',
+                'coordinates': [
+                    pltCoords
+                ]
+            }
         }
-        }
-        });
-         
-        // Add a new layer to visualize the polygon.
-        map.addLayer({
+    });
+
+    // Add a new layer to visualize the polygon.
+    map.addLayer({
         'id': 'MapUpdate',
         'type': 'fill',
-        'source': 'MapUpdate', // reference the data source
-        'layout': {},
-        'paint': {
-        'fill-color': '#0080ff', // blue color fill
-        'fill-opacity': 0.5
-        }
-        });
-        // Add a black outline around the polygon.
-        /*
-        map.addLayer({
-        'id': 'outline',
-        'type': 'line',
         'source': 'MapUpdate',
         'layout': {},
         'paint': {
-        'line-color': '#000',
-        'line-width': 1
+            'fill-color': '#0080ff', // blue color fill
+            'fill-opacity': 0.5
         }
-        
-        });
-        */
-        
+    });
 }
 
+// Function to start recording the user's position
 function recordPos() {
     document.getElementById("recbtn").classList.toggle("hide");
     document.getElementById("stopbtn").classList.toggle("unhide");
@@ -58,51 +42,58 @@ function recordPos() {
     recordId = navigator.geolocation.watchPosition(recordPosSuccess);
 }
 
+// Function to handle the successful retrieval of the user's position
 function recordPosSuccess(pos) {
     const crd = pos.coords;
     const elem = document.getElementById("demo");
     const currentPos = [crd.longitude, crd.latitude];
 
+    // Check for duplicate locations and add to the coordsList if not a duplicate
     if (coordsList.some((arr) => JSON.stringify(arr) === JSON.stringify(currentPos))) {
         console.log("Duplicate location");
-    } 
-    else {
-        console.log("Currnet coordList",coordsList);
+    } else {
+        console.log("Currnet coordList", coordsList);
         coordsList.push(currentPos);
         elem.innerHTML = elem.innerHTML + currentPos;
     }
 }
 
+// Function to stop recording the user's position
 function stopRecording() {
     navigator.geolocation.clearWatch(recordId);
     document.getElementById("stopbtn").classList.remove("unhide");
     document.getElementById("stopbtn").classList.toggle("hide");
     findMaxMin();
 }
-// Print out the polygonal layer
-function findMaxMin(){
+
+// Function to determine the maximum and minimum latitude and longitude values
+function findMaxMin() {
     let lats = [];
     let longs = [];
     let maxLat = 0;
     let maxLong = 0;
     console.log("Output");
-    console.log("Final coordList",coordsList);
+    console.log("Final coordList", coordsList);
+
+    // Iterate through the coordsList and populate the lats and longs arrays
     for (let i = 0; i < coordsList.length; i++) {
         const subarray = coordsList[i];
         const firstValue = subarray[0];
         const secondValue = subarray[1];
-        console.log("Index: ", i, "coordlist: ",coordsList[i], "sub0: ",subarray[0], "sub1: ",subarray[1]);
+        console.log("Index: ", i, "coordlist: ", coordsList[i], "sub0: ", subarray[0], "sub1: ", subarray[1]);
         longs.push(firstValue);
         lats.push(secondValue);
-      }
-      console.log("Longs: ", longs);
-      console.log("Lats: ", lats);
-      console.log("Max Longitude: ", Math.max(...longs));
-      console.log("Min Longitude: ", Math.min(...longs));
-      console.log("Max Latitude: ", Math.max(...lats));
-      console.log("Min Latitude: ", Math.min(...lats));
-    
-    if ((Math.max(...longs)) - (Math.min(...longs)) < 0.00005) {
+    }
+
+    console.log("Longs: ", longs);
+    console.log("Lats: ", lats);
+    console.log("Max Longitude: ", Math.max(...longs));
+    console.log("Min Longitude: ", Math.min(...longs));
+    console.log("Max Latitude: ", Math.max(...lats));
+    console.log("Min Latitude: ", Math.min(...lats));
+
+    // Handle cases where the range between longitudes and latitudes is too small
+    if ((Math.max(...longs)) - (Math.min(...longs)) < 0.00005)
         maxLong = 0.00005 + (Math.max(...longs))
         console.log("Range between Longs is too small adding 5 feet");
     }
