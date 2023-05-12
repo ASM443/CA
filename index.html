@@ -55,18 +55,18 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
     </body>
 </html>
 
-<form action="submit.php" method="post">
-  <button type="first" label for="FirstName">First Name:</label>
+<form class="hide" id="submitForm" onsubmit="event.preventDefault();" method="post">
+  <label for="FirstName">First Name:</label>
   <input type="text" id="FirstName" name="FirstName" required>
   
-  <button type="last" label for="LastName">Last Name:</label>
+  <label for="LastName">Last Name:</label>
   <input type="text" id="LastName" name="LastName" required>
   
   <label for="email">Email:</label>
   <input type="text" id="email" name="email" required>
   
   <label for="PlantType">Plant types involved:</label>
-  <input type="text" name="PlantType"></textarea>
+  <input type="text" id="PlantType"></textarea>
   
   <label for="percentage">Percentage of area covered:</label>
   <select id="percentage" name="percentage">
@@ -85,5 +85,5 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
   <label for="image">Image of infested area:</label>
   <input type="file" id="image" name="image" accept="image/*" required>
   
-  <button type="submit">Submit</button>
+  <button type="submit" onclick="recordData();">Submit</button>
 </form>
